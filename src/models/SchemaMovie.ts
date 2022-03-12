@@ -6,7 +6,7 @@ const movieSchema = new Schema(
         rating:{type:Number},
         description:{type:String},
         director:{type:String},
-        start:{type:Array},
+        stars:{type:Array},
         poster:{type:String}
     },{
         timestamps:true

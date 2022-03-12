@@ -8,13 +8,13 @@ export async function testRoute(req: Request, res: Response) {
     }
 }
 export async function createMovie(req: Request, res: Response) {
-    const { title, rating, description, director, start, poster } = req.body
+    const { title, rating, description, director, stars, poster } = req.body
     const movie = {
         title: title,
         rating: rating,
         description: description,
         director: director,
-        start: start,
+        stars: stars,
         poster: poster
     }
     try {
@@ -58,13 +58,13 @@ export async function searching(req: Request, res: Response) {
 }
 export async function updateMovie(req: Request, res: Response) {
     const id = req.params.id
-    const { title, rating, description, director, start, poster } = req.body
+    const { title, rating, description, director, stars, poster } = req.body
     const movieUpdated = {
         title: title,
         rating: rating,
         description: description,
         director: director,
-        start: start,
+        stars: stars,
         poster: poster
     }
     try {
