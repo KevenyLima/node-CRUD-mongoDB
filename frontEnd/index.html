@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="body">um site qualquer</div>
+    <button id="request">request</button>
+    <div id="phrase">uma frase de efeito do front</div>
+</body>
+<script>
+    const div = document.getElementById('body')
+    const button = document.getElementById('request')
+    const phrase = document.getElementById('phrase')
+    const project = { name: 'projeto teste', cost: 23 }
+    button.addEventListener('click', request)
+
+    function teste() {
+        console.log('esta funcionando')
+    }
+    console.log(phrase.textContent)
+    function request(){
+        fetch("http://localhost:3000", {
+            method: 'post',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(project)
+        }).then(resp => resp.json()).then((data) => {
+            render(data)
+        }).catch(error => console.log(error))
+    }
+
+
+    function render(data) {
+        div.innerHTML +=`<div>${data.message} : ${data.name}</div>`
+        console.log(div)
+    }
+</script>
+
+</html>
