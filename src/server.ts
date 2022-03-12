@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 //routes
-app.use('/product',routerMovies)
+app.use('/movies',routerMovies)
 
 
 const port = config.get<number>('port')

@@ -1,7 +1,7 @@
-import { Request,Response,Router } from "express"
-import { createMovie, deleteMovie, getAllMovies, getOneMovie, searching, updateMovie } from "../controllers/MovieControlers"
+import { Router } from "express"
+import { createMovie, deleteMovie, getAllMovies, getOneMovie, searching, updateMovie,testRoute } from "../controllers/MovieControllers"
 const router = Router()
-
+router.get('/test',testRoute)
 router.post('/',createMovie)
 router.get('/',getAllMovies)
 router.get('/:id',getOneMovie)
