@@ -1,15 +1,19 @@
-import express, { json } from "express"
-import { Request,Response } from "express"
+require("dotenv").config()
+import express from "express"
+import router from "./routes/RouterProduct"
+import config from "config"
+import db from '../config/db'
 const cors =require('cors')
 const app = express()
 
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+//routes
+app.use('/product',router)
 
-app.post("/",(req,res)=>{
-    const {name,cost}= req.body
-    console.log()
-    res.json({'name':name,'message':'backend mensagem'})
+
+const port = config.get<number>('port')
+app.listen(port, async()=>{ 
+    await db()
 })
-app.listen(3000)
