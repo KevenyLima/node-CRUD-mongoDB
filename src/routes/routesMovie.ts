@@ -3,11 +3,11 @@ import { createMovie, deleteMovie, getAllMovies, getOneMovie, searching, updateM
 import { validator } from "../middleware/handleValidations"
 import { movieCreateValidations } from "../middleware/movieValidations"
 const router = Router()
-router.get('/test',validator,testRoute)
+router.get('/test',testRoute)
 router.post('/',movieCreateValidations(),validator,createMovie)
-router.get('/',validator,getAllMovies)
-router.get('/:id',validator,getOneMovie)
-router.put('/:id',validator,updateMovie)
-router.delete('/:id',validator,deleteMovie)
-router.get('/:search',validator,searching)
+router.get('/',getAllMovies)
+router.get('/:id',getOneMovie)
+router.put('/:id',movieCreateValidations(),validator,updateMovie)
+router.delete('/:id',deleteMovie)
+router.get('/:search',searching)
 export default  router 

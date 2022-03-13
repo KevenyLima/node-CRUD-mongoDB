@@ -3,8 +3,8 @@ import { MovieModel } from "../models/SchemaMovie";
 export async function testRoute(req: Request, res: Response) {
     try {
         res.json({ message: 'mensagem enviada' })
-    } catch (error) {
-        res.status(400).json({ 'error': error })
+    } catch (error:any) {
+        res.status(400).json({ 'error': error.message })
     }
 }
 export async function createMovie(req: Request, res: Response) {
@@ -20,8 +20,8 @@ export async function createMovie(req: Request, res: Response) {
     try {
         const newMovie = await MovieModel.create(movie)
         return res.status(200).json(newMovie)
-    } catch (error) {
-        return res.status(400).json({ "error": error })
+    } catch (error:any) {
+        return res.status(400).json({ "error": error.message })
     }
 }
 export async function getAllMovies(req: Request, res: Response) {
@@ -30,8 +30,8 @@ export async function getAllMovies(req: Request, res: Response) {
         const movies = await MovieModel.find()
         return res.status(200).json(movies)
 
-    } catch (error) {
-        return res.status(400).json({ "error": error })
+    } catch (error:any) {
+        return res.status(400).json({ "error": error.message })
     }
 }
 export async function getOneMovie(req: Request, res: Response) {
@@ -42,8 +42,8 @@ export async function getOneMovie(req: Request, res: Response) {
         return res.status(200).json(movie)
 
 
-    } catch (error) {
-        return res.status(400).json({ "error": error })
+    } catch (error:any) {
+        return res.status(400).json({ "error": error.message })
     }
 }
 export async function searching(req: Request, res: Response) {
@@ -51,8 +51,8 @@ export async function searching(req: Request, res: Response) {
     try {
         const movies = await MovieModel.find({ 'title': search })
         res.status(200).json(movies)
-    } catch (error) {
-        res.status(400).json({ 'error': error })
+    } catch (error:any) {
+        res.status(400).json({ 'error': error.message })
     }
 
 }
@@ -77,8 +77,8 @@ export async function updateMovie(req: Request, res: Response) {
         return res.status(200).json(movieUpdated)
 
 
-    } catch (error) {
-        return res.status(400).json({ "error": error })
+    } catch (error:any) {
+        return res.status(400).json({ "error": error.message })
     }
 
 }
@@ -92,8 +92,8 @@ export async function deleteMovie(req: Request, res: Response) {
     try {
         await MovieModel.deleteOne({ _id : id })
         return res.status(200).json({message:'filme deletado com sucesso'})
-    } catch (error) {
-        return res.status(500).json({ "error": error })
+    } catch (error:any) {
+        return res.status(500).json({ "error": error.message })
     }
 
 }
