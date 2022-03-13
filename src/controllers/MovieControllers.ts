@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
+import Logger from "../../config/logger";
 import { MovieModel } from "../models/SchemaMovie";
 export async function testRoute(req: Request, res: Response) {
     try {
         res.json({ message: 'mensagem enviada' })
     } catch (error:any) {
-        res.status(400).json({ 'error': error.message })
+        Logger.error(`error:${error.message}`)
+        res.status(400).json({ 'error': "não foi possivel concluir a ação"})
     }
 }
 export async function createMovie(req: Request, res: Response) {
@@ -21,7 +23,8 @@ export async function createMovie(req: Request, res: Response) {
         const newMovie = await MovieModel.create(movie)
         return res.status(200).json(newMovie)
     } catch (error:any) {
-        return res.status(400).json({ "error": error.message })
+        Logger.error(`error:${error.message}`)
+        return res.status(400).json({ "error": "não foi possivel concluir a ação" })
     }
 }
 export async function getAllMovies(req: Request, res: Response) {
@@ -31,7 +34,8 @@ export async function getAllMovies(req: Request, res: Response) {
         return res.status(200).json(movies)
 
     } catch (error:any) {
-        return res.status(400).json({ "error": error.message })
+        Logger.error(`error:${error.message}`)
+        return res.status(400).json({ "error": "não foi possivel concluir a ação" })
     }
 }
 export async function getOneMovie(req: Request, res: Response) {
@@ -43,7 +47,8 @@ export async function getOneMovie(req: Request, res: Response) {
 
 
     } catch (error:any) {
-        return res.status(400).json({ "error": error.message })
+        Logger.error(`error:${error.message}`)
+        return res.status(400).json({ "error": "não foi possivel concluir a ação"})
     }
 }
 export async function searching(req: Request, res: Response) {
@@ -52,7 +57,8 @@ export async function searching(req: Request, res: Response) {
         const movies = await MovieModel.find({ 'title': search })
         res.status(200).json(movies)
     } catch (error:any) {
-        res.status(400).json({ 'error': error.message })
+        Logger.error(`error:${error.message}`)
+        res.status(400).json({ 'error': "não foi possivel concluir a ação" })
     }
 
 }
@@ -78,7 +84,8 @@ export async function updateMovie(req: Request, res: Response) {
 
 
     } catch (error:any) {
-        return res.status(400).json({ "error": error.message })
+        Logger.error(`error:${error.message}`)
+        return res.status(400).json({ "error no sistema":"nao foi possivel concluir a ação" })
     }
 
 }
@@ -93,7 +100,8 @@ export async function deleteMovie(req: Request, res: Response) {
         await MovieModel.deleteOne({ _id : id })
         return res.status(200).json({message:'filme deletado com sucesso'})
     } catch (error:any) {
-        return res.status(500).json({ "error": error.message })
+        Logger.error(`erro no sistema:${error.message}`)
+        return res.status(500).json({ "error": "não foi possivel concluir a ação"})
     }
 
 }
