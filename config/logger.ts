@@ -16,7 +16,7 @@ const colors={
     error:"red",
     warn:"yellow",
     info:"green",
-    http:"margenta",
+    http:"magenta",
     debug:"white"
 }
 winsdom.addColors(colors)

@@ -4,12 +4,14 @@ import routerMovies from "./routes/routesMovie"
 import config from "config"
 import db from '../config/db'
 import Logger from "../config/logger"
+import morganMiddleWare from "./middleware/morganMiddleware"
 const cors =require('cors')
 const app = express()
 
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(morganMiddleWare)
 //routes
 app.use('/movies',routerMovies)
 
